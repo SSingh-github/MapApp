@@ -6,17 +6,17 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct LocationsView: View {
     @EnvironmentObject var vm : LocationsViewModel
     
     var body: some View {
-        ForEach(vm.locations) { location in
-            Text(location.name)
-        }
+        Map(position: $vm.position)
     }
 }
 
 #Preview {
     LocationsView()
 }
+
