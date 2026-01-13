@@ -13,8 +13,23 @@ struct LocationsView: View {
     
     var body: some View {
         ZStack {
-            Map(position: $vm.position)
-                .ignoresSafeArea()
+            Map(position: $vm.position, content: {
+                ForEach(vm.locations) { location in
+                    Annotation(location.name, coordinate: location.coordinates) {
+                        VStack(spacing: 4) {
+                            Image(systemName: "mappin.circle.fill")
+                                .font(.title)
+                                .foregroundStyle(.red)
+                            Text(location.name)
+                                .font(.caption)
+                                .fixedSize()
+                        }
+                    }
+                }
+            })
+            .ignoresSafeArea()
+
+           
             VStack(spacing: 0) {
                 header
                     .padding()
